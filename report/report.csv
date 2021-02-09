@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+JaCoCo Report/代码覆盖率,com.xingag.api.swagger,Swagger2,0,31,0,0,0,13,0,3,0,3
+JaCoCo Report/代码覆盖率,com.xingag.api,ApiApplication,5,12,0,0,2,2,1,2,1,2
+JaCoCo Report/代码覆盖率,com.xingag.api.domain,People,46,0,0,0,20,0,10,0,10,0
+JaCoCo Report/代码覆盖率,com.xingag.api.service,PeopleServiceImp,41,3,6,0,5,1,8,1,5,1
+JaCoCo Report/代码覆盖率,com.xingag.api.service,ScoreServiceImpl,39,0,12,0,13,0,8,0,2,0
+JaCoCo Report/代码覆盖率,com.xingag.api.controller,PeopleController,70,3,8,0,19,1,9,1,5,1
+JaCoCo Report/代码覆盖率,com.xingag.api.common,SqlProvider.new SQL() {...},34,0,2,0,8,0,2,0,1,0
+JaCoCo Report/代码覆盖率,com.xingag.api.common,ResponseCode,389,0,0,0,41,0,6,0,6,0
+JaCoCo Report/代码覆盖率,com.xingag.api.common,SqlProvider,10,0,0,0,3,0,2,0,2,0
+JaCoCo Report/代码覆盖率,com.xingag.api.common,ApiResult,318,0,40,0,26,0,43,0,23,0

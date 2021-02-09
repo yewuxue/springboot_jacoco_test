@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ResponseCode.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">JaCoCo Report</a> &gt; <a href="../index.html" class="el_bundle">代码覆盖率</a> &gt; <a href="index.source.html" class="el_package">com.xingag.api.common</a> &gt; <span class="el_source">ResponseCode.java</span></div><h1>ResponseCode.java</h1><pre class="source lang-java linenums">package com.xingag.api.common;
+
+/***
+ * 返回值
+ */
+
+<span class="nc" id="L7">public enum ResponseCode {</span>
+<span class="nc" id="L8">    SUCCESS(1000, &quot;成功&quot;),</span>
+<span class="nc" id="L9">    FAIL(-1, &quot;失败&quot;),</span>
+
+    // 参数
+<span class="nc" id="L12">    PARAM_ERROR(1001, &quot;参数错误&quot;),</span>
+<span class="nc" id="L13">    PARAM_NOT_NULL(1002, &quot;参数不能为空&quot;),</span>
+<span class="nc" id="L14">    SIGN_ERROR(1003,&quot;签名错误&quot;),</span>
+
+    // 用户
+<span class="nc" id="L17">    ACCOUNT_ERROR(2001, &quot;账号错误&quot;),</span>
+<span class="nc" id="L18">    PASSWORD_ERROR(2002,&quot;密码错误&quot;),</span>
+<span class="nc" id="L19">    ACCOUNT_NOT_EXIST(2003,&quot;账号不存在&quot;),</span>
+<span class="nc" id="L20">    ACCOUNT_EXIST(2004,&quot;账号已被注册&quot;),</span>
+<span class="nc" id="L21">    PHONE_ERROR(2005,&quot;手机号错误&quot;),</span>
+<span class="nc" id="L22">    EMAIL_ERROR(2006,&quot;邮箱错误&quot;),</span>
+<span class="nc" id="L23">    PHONE_EXIST(2007,&quot;手机号已存在&quot;),</span>
+<span class="nc" id="L24">    EMAIL_EXIST(2008,&quot;邮箱已存在&quot;),</span>
+<span class="nc" id="L25">    CHECK_CODE_ERROR(2009,&quot;验证码错误&quot;),</span>
+<span class="nc" id="L26">    CODE_ERROR(2010, &quot;验证码不正确&quot;),</span>
+<span class="nc" id="L27">    MESSAGE_SEND_ERROR(2011,&quot;短信发送失败&quot;),</span>
+<span class="nc" id="L28">    EMAIL_SEND_ERROR(2012,&quot;邮件发送失败&quot;),</span>
+<span class="nc" id="L29">    ACCOUNT_LOCK(2013,&quot;帐号被锁定&quot;),</span>
+<span class="nc" id="L30">    ACCOUNT_DELETED(2014,&quot;帐号被回收&quot;),</span>
+<span class="nc" id="L31">    ADMIN_ROLE_EXIST(2015,&quot;员工已经拥有对应角色,请勿重复添加&quot;),</span>
+<span class="nc" id="L32">    ROLE_PERMISSION_EXIST(2016,&quot;角色已经拥有该权限,请勿重复添加&quot;),</span>
+<span class="nc" id="L33">    ROLE_PERMISSION_NULL(2017,&quot;角色没有被分配权限&quot;),</span>
+<span class="nc" id="L34">    ROLE_EXIST(2018,&quot;角色已经存在&quot;),</span>
+<span class="nc" id="L35">    ROLE_PERMISSION_ERROR(2019,&quot;角色拥有的权限信息错误&quot;),</span>
+<span class="nc" id="L36">    ACCOUNT_ADMIN_ROLE(2020,&quot;用户拥有超级管理员(admin)角色,不可操作&quot;),</span>
+<span class="nc" id="L37">    ADMIN_ROLE_ERROR(2021,&quot;员工拥有的角色信息错误&quot;),</span>
+<span class="nc" id="L38">    ADMIN_ROLE_NULL(2022,&quot;员工角色为空&quot;),</span>
+<span class="nc" id="L39">    PERMISSION_EXIST(2023,&quot;权限已经存在&quot;),</span>
+<span class="nc" id="L40">    PERMISSION_NOT_EXIST(2024,&quot;权限不存在&quot;),</span>
+
+
+<span class="nc" id="L43">    UNKNOWN_ERROR(-1000,&quot;未知异常&quot;);</span>
+
+    // 返回码
+    private int code;
+
+    // 返回信息
+    private String msg;
+
+<span class="nc" id="L51">    private ResponseCode(int code, String msg) {</span>
+<span class="nc" id="L52">        this.code = code;</span>
+<span class="nc" id="L53">        this.msg = msg;</span>
+<span class="nc" id="L54">    }</span>
+
+    public int getCode() {
+<span class="nc" id="L57">        return code;</span>
+    }
+
+    public void setCode(int code) {
+<span class="nc" id="L61">        this.code = code;</span>
+<span class="nc" id="L62">    }</span>
+
+    public String getMsg() {
+<span class="nc" id="L65">        return msg;</span>
+    }
+
+    public void setMsg(String msg) {
+<span class="nc" id="L69">        this.msg = msg;</span>
+<span class="nc" id="L70">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

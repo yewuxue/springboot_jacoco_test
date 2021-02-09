@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>ApiResult.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">JaCoCo Report</a> &gt; <a href="../index.html" class="el_bundle">代码覆盖率</a> &gt; <a href="index.source.html" class="el_package">com.xingag.api.common</a> &gt; <span class="el_source">ApiResult.java</span></div><h1>ApiResult.java</h1><pre class="source lang-java linenums">package com.xingag.api.common;
+
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.Map;
+
+/***
+ * 接口返回结果封装
+ */
+
+<span class="nc bnc" id="L15" title="All 40 branches missed.">@Data</span>
+@ApiModel(value = &quot;接口返回结果&quot;)
+public class ApiResult&lt;T&gt; implements Serializable {
+
+    private static final long serialVersionUID = -2953545018812382877L;
+
+    /**
+     * 返回码，200 正常
+     */
+<span class="nc" id="L24">    @ApiModelProperty(value = &quot;返回码，200 正常&quot;, name = &quot;code&quot;)</span>
+<span class="nc" id="L25">    private int code = 200;</span>
+
+    /**
+     * 返回信息
+     */
+<span class="nc" id="L30">    @ApiModelProperty(value = &quot;返回信息&quot;, name = &quot;msg&quot;)</span>
+<span class="nc" id="L31">    private String msg = &quot;成功&quot;;</span>
+
+    /**
+     * 返回数据
+     */
+    @ApiModelProperty(value = &quot;返回数据对象&quot;, name = &quot;data&quot;)
+<span class="nc" id="L37">    private T data;</span>
+
+    /**
+     * 附加数据
+     */
+    @ApiModelProperty(value = &quot;附加数据&quot;, name = &quot;extraData&quot;)
+<span class="nc" id="L43">    private Map&lt;String, Object&gt; extraData;</span>
+
+    /**
+     * 系统当前时间
+     */
+<span class="nc" id="L48">    @ApiModelProperty(value = &quot;服务器系统时间，时间戳(精确到毫秒)&quot;, name = &quot;timestamp&quot;)</span>
+<span class="nc" id="L49">    private Long timestamp = System.currentTimeMillis();</span>
+
+    /**
+     * 获取成功状态结果
+     *
+     * @return
+     */
+    public static ApiResult success() {
+<span class="nc" id="L57">        return success(null, null);</span>
+    }
+
+    /**
+     * 获取成功状态结果
+     *
+     * @param data 返回数据
+     * @return
+     */
+    public static ApiResult success(Object data) {
+<span class="nc" id="L67">        return success(data, null);</span>
+    }
+
+    /**
+     * 获取成功状态结果
+     *
+     * @param data 返回数据
+     * @param extraData 附加数据
+     * @return
+     */
+    public static ApiResult success(Object data, Map&lt;String, Object&gt; extraData) {
+<span class="nc" id="L78">        ApiResult apiResult = new ApiResult();</span>
+<span class="nc" id="L79">        apiResult.setCode(ResponseCode.SUCCESS.getCode());</span>
+<span class="nc" id="L80">        apiResult.setMsg(ResponseCode.SUCCESS.getMsg());</span>
+<span class="nc" id="L81">        apiResult.setData(data);</span>
+<span class="nc" id="L82">        apiResult.setExtraData(extraData);</span>
+<span class="nc" id="L83">        return apiResult;</span>
+    }
+
+    /**
+     * 获取失败状态结果
+     *
+     * @return
+     */
+    public static ApiResult failure() {
+<span class="nc" id="L92">        return failure(ResponseCode.FAIL.getCode(), ResponseCode.FAIL.getMsg(), null);</span>
+    }
+
+    /**
+     * 获取失败状态结果
+     *
+     * @param msg (自定义)失败消息
+     * @return
+     */
+    public static ApiResult failure(String msg) {
+<span class="nc" id="L102">        return failure(ResponseCode.FAIL.getCode(), msg, null);</span>
+    }
+
+    /**
+     * 获取失败状态结果
+     *
+     * @param responseCode 返回状态码
+     * @return
+     */
+    public static ApiResult failure(ResponseCode responseCode) {
+<span class="nc" id="L112">        return failure(responseCode.getCode(), responseCode.getMsg(), null);</span>
+    }
+
+    /**
+     * 获取失败状态结果
+     *
+     * @param responseCode 返回状态码
+     * @param data         返回数据
+     * @return
+     */
+    public static ApiResult failure(ResponseCode responseCode, Object data) {
+<span class="nc" id="L123">        return failure(responseCode.getCode(), responseCode.getMsg(), data);</span>
+    }
+
+    /**
+     * 获取失败返回结果
+     *
+     * @param code 错误码
+     * @param msg  错误信息
+     * @param data 返回结果
+     * @return
+     */
+    public static ApiResult failure(int code, String msg, Object data) {
+<span class="nc" id="L135">        ApiResult result = new ApiResult();</span>
+<span class="nc" id="L136">        result.setCode(code);</span>
+<span class="nc" id="L137">        result.setMsg(msg);</span>
+<span class="nc" id="L138">        result.setData(data);</span>
+<span class="nc" id="L139">        return result;</span>
+    }
+
+
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

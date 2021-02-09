@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../jacoco-resources/report.gif" type="image/gif"/><title>PeopleController.java</title><link rel="stylesheet" href="../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../index.html" class="el_report">JaCoCo Report</a> &gt; <a href="../index.html" class="el_bundle">代码覆盖率</a> &gt; <a href="index.source.html" class="el_package">com.xingag.api.controller</a> &gt; <span class="el_source">PeopleController.java</span></div><h1>PeopleController.java</h1><pre class="source lang-java linenums">package com.xingag.api.controller;
+
+import com.xingag.api.common.ApiResult;
+import com.xingag.api.domain.People;
+import com.xingag.api.service.PeopleService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+/***
+ * 对外暴露的接口
+ * 欢迎关注公众号：AirPython
+ */
+
+@Api(value = &quot;Restful API 服务&quot;)
+@RestController
+@RequestMapping(&quot;/v1&quot;)
+<span class="fc" id="L22">public class PeopleController {</span>
+
+    @Autowired
+    private PeopleService peopleService;
+
+    /***
+     * 所有记录
+     * @return
+     */
+    @ApiOperation(value = &quot;查询所有记录&quot;)
+    @RequestMapping(value = &quot;/all&quot;, method = RequestMethod.GET)
+    public ApiResult getAllPeople() {
+<span class="nc" id="L34">        List&lt;People&gt; peoples = peopleService.getAllPeoples();</span>
+<span class="nc" id="L35">        return ApiResult.success(peoples);</span>
+    }
+
+    /***
+     * 某一条记录
+     * @param id
+     * @return
+     */
+    @ApiOperation(value = &quot;查询某一条记录&quot;)
+    @RequestMapping(value = &quot;/one/{id}&quot;, method = RequestMethod.GET)
+    public ApiResult getOnePeople(@ApiParam(name = &quot;id&quot;, value = &quot;主键id&quot;, required = true) @PathVariable int id) {
+<span class="nc" id="L46">        People people = peopleService.getOnePeople(id);</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">        if (null != people) {</span>
+<span class="nc" id="L48">            return ApiResult.success(people);</span>
+        } else {
+<span class="nc" id="L50">            return ApiResult.failure(&quot;数据不存在&quot;);</span>
+        }
+    }
+
+
+    /***
+     * 新增一条记录
+     * {
+     * 	&quot;id&quot;:1,
+     * 	&quot;name&quot;:&quot;1111&quot;,
+     * 	&quot;age&quot;:23,
+     * 	&quot;extra&quot;:true
+     * }
+     * @return
+     */
+    @ApiOperation(value = &quot;新增某一条记录&quot;)
+    @RequestMapping(value = &quot;/add&quot;, method = RequestMethod.POST)
+    public ApiResult updatePeople(@RequestBody People people) {
+<span class="nc" id="L68">        boolean result = peopleService.addPeople(people);</span>
+<span class="nc bnc" id="L69" title="All 2 branches missed.">        if (result) {</span>
+<span class="nc" id="L70">            return ApiResult.success(&quot;新增一条记录成功！&quot;);</span>
+        } else {
+<span class="nc" id="L72">            return ApiResult.failure(&quot;新增失败！&quot;);</span>
+        }
+    }
+
+
+    /***
+     * 更新一条记录
+     * Body-form-data
+     * id:27
+     * name:星安果
+     * age:18
+     * extra:true
+     * @param id
+     * @param name
+     * @param age
+     * @param extra
+     * @return
+     */
+    @ApiOperation(value = &quot;更新某一条记录&quot;)
+    @RequestMapping(value = &quot;/update&quot;, method = RequestMethod.POST)
+    public ApiResult updatePeople(@RequestParam int id, @RequestParam String name, @RequestParam int age, @RequestParam boolean extra) {
+<span class="nc" id="L93">        People people = new People(id, name, age, extra);</span>
+<span class="nc" id="L94">        boolean result = peopleService.updatePeople(people);</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">        if (result) {</span>
+<span class="nc" id="L96">            return ApiResult.success(&quot;更新成功！&quot;);</span>
+        } else {
+<span class="nc" id="L98">            return ApiResult.failure(&quot;更新失败！&quot;);</span>
+        }
+    }
+
+    /***
+     * 删除一条记录
+     * @param id  主键id
+     * @return
+     */
+    @ApiOperation(value = &quot;根据ID删除一条记录&quot;)
+    @RequestMapping(value = &quot;/delete&quot;, method = RequestMethod.DELETE)
+    public ApiResult delFoo(@RequestParam int id) {
+<span class="nc" id="L110">        Boolean result = peopleService.delPeople(id);</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">        if (result) {</span>
+<span class="nc" id="L112">            return ApiResult.success(&quot;删除成功！&quot;);</span>
+        } else {
+<span class="nc" id="L114">            return ApiResult.failure(&quot;用户不存在，删除失败！&quot;);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
