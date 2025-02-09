@@ -44,6 +44,7 @@ public class PeopleController {
     @RequestMapping(value = "/one/{id}", method = RequestMethod.GET)
     public ApiResult getOnePeople(@ApiParam(name = "id", value = "主键id", required = true) @PathVariable int id) {
         People people = peopleService.getOnePeople(id);
+        System.out.println("获取一条记录controller!");
         if (null != people) {
             return ApiResult.success(people);
         } else {
