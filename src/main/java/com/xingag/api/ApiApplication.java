@@ -37,6 +37,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 public class ApiApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
+        System.out.println("Hello, World!");
         SpringApplication.run(ApiApplication.class,args);
     }
 
