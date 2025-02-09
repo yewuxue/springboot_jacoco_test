@@ -13,7 +13,7 @@ public interface PeopleService {
 
     //获取某一条记录
     People getOnePeople(int id);
-
+    System.out.println("获取一条记录!");
     //更新一条记录
     boolean updatePeople(People people);
 
