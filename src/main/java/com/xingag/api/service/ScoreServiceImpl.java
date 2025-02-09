@@ -13,7 +13,7 @@ public class ScoreServiceImpl {
         } else if (score > 40) {
             result = "不合格";
         } else if (score >= 0) {
-            result = "差";
+            result = "差！！！";
         } else {
             result = "成绩格式不正确";
         }
